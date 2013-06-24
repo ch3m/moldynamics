@@ -86,6 +86,17 @@ public:
       ForceZ[i]=0.0;
     }
   }
+  void PrintFirstValues(){
+    cout << "++++++++++++++++++++++++++++++++++++" << endl;
+    cout << "\tPosiciones" << endl;
+    cout << "\t\tX:\t" << PosX[0] << endl;
+    cout << "\t\tY\t" << PosY[0] << endl;
+    cout << "\t\tZ:\t" << PosZ[0] << endl;
+    cout << "\t\tVX:\t" << VelX[0] << endl;
+    cout << "\t\tVY:\t" << VelY[0] << endl;
+    cout << "\t\tVZ:\t" << VelZ[0] << endl;
+    cout << "------------------------------------" << endl;
+  }
 
 protected:
 private:

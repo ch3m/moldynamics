@@ -13,6 +13,7 @@
 #include <iostream>
 #include <fstream>
 #include <stdlib.h>
+#include <sstream>
 #include "SimParams.h"
 
 using namespace std;
@@ -36,23 +37,15 @@ public:
   void Reader(SimParams<Tmedida,Tn> &Parameters){
     string buffer;
     SimConfigFile >> Parameters.NumSteps;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.NumAverage;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.OutputFrequency;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.deltaT;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.Temperature;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.CutRadius;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.dcd_use;
-    getline(SimConfigFile, buffer);
     SimConfigFile >> Parameters.dcd_period;
-    getline(SimConfigFile, buffer);
-    SimConfigFile >> Parameters.dcd_overwrite;
-    getline(SimConfigFile, buffer);
+    SimConfigFile >> Parameters.dcd_overwrite; 
+    SimConfigFile >> Parameters.boxfile_name; 
   };
 
 protected:

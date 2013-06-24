@@ -2,11 +2,11 @@
 #include <cstdlib>
 #include <iostream>
 #include "Box.h"
-//#include "ReadBoxConfig.h"
+#include "ReadBoxConfig.h"
 #include "ReadSimConfig.h"
 //#include "Integrator.h"
-//#include "WriterXYZ.h"
-//#include "WriterBOX.h"
+#include "WriterXYZ.h"
+#include "WriterBOX.h"
 //#include "WriterDCD.h"
 //#include "DensityProfile.h"
 #include "StdOutput.h"
@@ -22,12 +22,12 @@ int main(void){
   ReadSimConfig<double,unsigned int> SimConf("./config.txt");
   SimConf.Reader(boxset.SimulationParams);
   boxset.SimulationParams.Print();
-  ReadBoxConfig BoxFromFile(boxset.SimulationParams.boxfile_name);
-//  WriterXYZ fileXYZ("./movie.xyz");
-//  WriterBOX Boxfile("./box.config");
+  ReadBoxConfig<double,unsigned int> BoxFromFile(boxset.SimulationParams.boxfile_name);
+  WriterXYZ<double,unsigned int>  fileXYZ("./movie.xyz");
+  WriterBOX<double,unsigned int> Boxfile("./box.config");
 //  Timer T;
 //  T.PrintDate();
-//  BoxFromFile.Reader(boxset); //Llena la estructura de la caja
+  BoxFromFile.Reader(boxset); //Llena la estructura de la caja
 //  //Salida.PrintSimProperties(boxset);
 //  //Para escribir el DCD es necesaria la estructura de la caja
 //  WriterDCD fileDCD;

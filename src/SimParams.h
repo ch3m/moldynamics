@@ -11,6 +11,7 @@
 #ifndef SIMPARAMS_h
 #define SIMPARAMS_h
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -27,9 +28,10 @@ public:
     bool dcd_use;
     bool dcd_overwrite;
     Tn dcd_period;
-    const char *boxfile_name;
+    string boxfile_name;
     //Variable Real-Time
     Tn CurrentStep;
+
     //Constructors & destructor
     SimParams() {
       NumSteps = 0;
@@ -41,6 +43,7 @@ public:
       dcd_use = false;
       dcd_period = 1;
       dcd_overwrite = true;
+      boxfile_name = "caja";
     }
     ~SimParams(){};
 
