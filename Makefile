@@ -1,3 +1,4 @@
+CXX = g++
 MKDIR_P = mkdir -p
 
 all: directories program
@@ -8,7 +9,7 @@ bin:
 	${MKDIR_P} bin
 
 program:
-	g++ src/main.cc -o bin/moldynamics
+	${CXX} -L../boost-install/lib -lboost_filesystem -lboost_system -I../boost-install/include src/main.cc -o bin/moldynamics
 	
 clean:
 	rm -rf bin
