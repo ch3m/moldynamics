@@ -9,6 +9,8 @@
       <df name="src">
         <in>Box.h</in>
         <in>DensityProfile.h</in>
+        <in>Forces.h</in>
+        <in>Integrator.h</in>
         <in>Pressure.h</in>
         <in>ReadBoxConfig.h</in>
         <in>ReadSimConfig.h</in>
@@ -47,7 +49,7 @@
       <makefileType>
         <makeTool>
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
-          <buildCommand>${MAKE} -f Makefile</buildCommand>
+          <buildCommand>${MAKE} -f Makefile ARCH=mac</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>bin/moldynamics</executablePath>
         </makeTool>
