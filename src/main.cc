@@ -21,7 +21,7 @@ int main(void){
   StdOutput<double,unsigned int> Salida;
   ReadSimConfig<double,unsigned int> SimConf("./config.txt");
   SimConf.Reader(boxset.SimulationParams);
-  boxset.SimulationParams.Print();
+  //boxset.SimulationParams.Print();
   ReadBoxConfig<double,unsigned int> BoxFromFile(boxset.SimulationParams.boxfile_name);
   WriterXYZ<double,unsigned int>  fileXYZ("./movie.xyz");
   WriterBOX<double,unsigned int> Boxfile("./box.config");
