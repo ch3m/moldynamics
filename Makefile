@@ -15,14 +15,15 @@ else
 CXX := g++
 BOOST_LIB := ../boost-install
 endif
-@echo "Compilador: ${CXX}"
+	
 	
 directories: bin
 
 bin:
-	${MKDIR_P} bin"
+	${MKDIR_P} bin
 
 program:
+	@echo "Compilador: ${CXX}"
 	${CXX} -L${BOOST_LIB}/lib -lboost_filesystem -lboost_system -I${BOOST_LIB}/include src/main.cc -o bin/moldynamics
 	
 clean:
