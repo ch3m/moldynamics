@@ -12,30 +12,38 @@
 #include "StdOutput.h"
 #include "Timer.h"
 
+#ifndef MEDIDA_TYPE
+#define MEDIDA_TYPE double
+#endif
+
+#ifndef N_TYPE 
+#define N_TYPE long int
+#endif
+
 using namespace std;
 
 // main routine that executes on the host  
 int main(void){  
   //SimParams Params; //Create object with parameters simulation(Steps,average...)
-  Box<double,unsigned int> boxset;
-  StdOutput<double,unsigned int> Salida;
-  ReadSimConfig<double,unsigned int> SimConf("./config.txt");
+  Box<MEDIDA_TYPE,N_TYPE> boxset;
+  StdOutput<MEDIDA_TYPE,N_TYPE> Salida;
+  ReadSimConfig<MEDIDA_TYPE,N_TYPE> SimConf("./config.txt");
   SimConf.Reader(boxset.SimulationParams);
   //boxset.SimulationParams.Print();
-  ReadBoxConfig<double,unsigned int> BoxFromFile(boxset.SimulationParams.boxfile_name);
-  WriterXYZ<double,unsigned int>  fileXYZ("./movie.xyz");
-  WriterBOX<double,unsigned int> Boxfile("./box.config");
+  ReadBoxConfig<MEDIDA_TYPE,N_TYPE> BoxFromFile(boxset.SimulationParams.boxfile_name);
+  WriterXYZ<MEDIDA_TYPE,N_TYPE>  fileXYZ("./movie.xyz");
+  WriterBOX<MEDIDA_TYPE,N_TYPE> Boxfile("./box.config");
   Timer T;
   T.PrintDate();
   BoxFromFile.Reader(boxset); //Llena la estructura de la caja
   //Salida.PrintSimProperties(boxset);
   //Para escribir el DCD es necesaria la estructura de la caja
-  WriterDCD<double,unsigned int> fileDCD;
+  WriterDCD<MEDIDA_TYPE,N_TYPE> fileDCD;
   if(boxset.SimulationParams.dcd_use)fileDCD.Create_DCD_Mol2("./output.dcd",false,boxset);
   Salida.PrintAllProperties(boxset);
 ////Start Simulation
-  DensityProfile<double,unsigned int> DensProfile("PerfilesDensidad",boxset);
-  Integrator<double,unsigned int> Integrate(boxset);//set deltaT, temperature, Calculo las primeras fuerza
+  DensityProfile<MEDIDA_TYPE,N_TYPE> DensProfile("PerfilesDensidad",boxset);
+  Integrator<MEDIDA_TYPE,N_TYPE> Integrate(boxset);//set deltaT, temperature, Calculo las primeras fuerza
   boxset.BoxPressure.PromeTensorZero();
 //  //for(int step=1; step <= boxset.SimulationParams.NumSteps; step++){
   boxset.SimulationParams.InitStep(); 
