@@ -11,13 +11,14 @@
         <in>DensityProfile.h</in>
         <in>Forces.h</in>
         <in>Integrator.h</in>
+        <in>Potentials.h</in>
         <in>Pressure.h</in>
         <in>ReadBoxConfig.h</in>
         <in>ReadSimConfig.h</in>
+        <in>ReadSimConfigXML.h</in>
         <in>SimParams.h</in>
         <in>StdOutput.h</in>
         <in>Timer.h</in>
-        <in>Writer.h</in>
         <in>WriterBOX.h</in>
         <in>WriterDCD.h</in>
         <in>WriterXYZ.h</in>
@@ -26,6 +27,7 @@
       <df name="test">
       </df>
       <df name="tools">
+        <in>file.c</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"
@@ -52,6 +54,11 @@
           <buildCommand>${MAKE} -f Makefile ARCH=mac</buildCommand>
           <cleanCommand>${MAKE} -f Makefile clean</cleanCommand>
           <executablePath>bin/moldynamics</executablePath>
+          <ccTool>
+            <incDir>
+              <pElem>../boost-install/include</pElem>
+            </incDir>
+          </ccTool>
         </makeTool>
       </makefileType>
     </conf>

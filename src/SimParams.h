@@ -33,6 +33,7 @@ public:
     string boxfile_name;
     //Variable Real-Time
     Tn CurrentStep;
+    int Potential_Type;
 
     //Constructors & destructor
     SimParams() {
@@ -46,6 +47,7 @@ public:
       dcd_period = 1;
       dcd_overwrite = true;
       boxfile_name = "caja";
+      Potential_Type = 1;
     }
     ~SimParams(){};
 
