@@ -16,7 +16,7 @@
 //! File position of NSTEP in DCD header
 #define NSTEP_POS 20L
 
-#include "../../boost-install/include/boost/filesystem/operations.hpp"
+#include "boost/filesystem/operations.hpp"
 #include <iostream>
 #include <fstream>
 #include <stdio.h>

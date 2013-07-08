@@ -24,7 +24,7 @@ public:
 
     //Constructors & destructor
     /**
-     * @bug Validar numero de particulas en El constructor con tamanode la caja
+     * @bug Validar numero de particulas en El constructor con tamano de la caja
      */
     Integrator(Box<Tmedida,Tn> & pBox) {
         DeltaT = pBox.SimulationParams.deltaT;
