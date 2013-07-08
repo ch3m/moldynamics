@@ -9,9 +9,9 @@
 
 #define MAX(a,b)         ((a < b) ?  (b) : (a))
 #define BIGGEST(a,b,c)   ((MAX(a,b) < c) ?  (c) : (MAX(a,b)))
-#define X 0 
-#define Y 0 
-#define Z 0 
+//#define X 0 
+//#define Y 0 
+//#define Z 0 
 
 using namespace std;
 
