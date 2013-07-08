@@ -26,7 +26,7 @@ public:
     //some funtion
     void RunCPU(Box<Tmedida,Tn> & pBox) {
       int N=pBox.TotalParticles;
-      double dx,dy,dz,Fij,rij,invrij,rij6;
+      double dx,dy,dz,Fij,rij2,invrij,rij6;
 
       pBox.ForceZero();
       pBox.PotentialEnergy = 0.0;
@@ -47,9 +47,12 @@ public:
           if (dz > (pBox.SizeZ/2.0)) dz = dz - pBox.SizeZ;
           else if (dz < -1.0*(pBox.SizeZ/2.0) ) dz = dz + pBox.SizeZ;
 
-          rij=dx*dx+dy*dy+dz*dz;
-          if(rij < rcut*rcut){
-            invrij = 1.0/rij;
+          rij2=dx*dx+dy*dy+dz*dz;
+          if(rij2 < rcut*rcut){
+            //working: ESTO ES LO QUE SE DESEA
+//            pBox.pot_energy();
+//            pBox.forces();
+            invrij = 1.0/rij2;
             rij6 = invrij*invrij*invrij;
             pBox.PotentialEnergy = pBox.PotentialEnergy + 4.0*rij6*(rij6 - 1.0);
             Fij=24.0*( 2.0*rij6 - 1.0 )*rij6;
