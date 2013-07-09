@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Box.h"
 #include "ReadBoxConfig.h"
-#include "ReadSimConfig.h"
 #include "ReadSimConfigXML.h"
 #include "Integrator.h"
 #include "WriterXYZ.h"
@@ -15,6 +14,7 @@
 //#include "boost/function.hpp"
 //#include "boost/bind.hpp"
 #include "Potentials.h"
+#include "Potential.h"
 
 #ifndef MEDIDA_TYPE
 #define MEDIDA_TYPE double
@@ -43,6 +43,7 @@ int main(void){
   string str = "./config.xml";
   ReadSimConfigXML<MEDIDA_TYPE,N_TYPE> SimXMLConf(str);
   SimXMLConf.Reader(boxset.SimulationParams);
+//  boxset.SimulationParams.Pot->calc_pot(3.2);
   ReadBoxConfig<MEDIDA_TYPE,N_TYPE> BoxFromFile(boxset.SimulationParams.boxfile_name);
   WriterXYZ<MEDIDA_TYPE,N_TYPE>  fileXYZ("./movie.xyz");
   WriterBOX<MEDIDA_TYPE,N_TYPE> Boxfile("./box.config");
@@ -58,7 +59,7 @@ int main(void){
   Integrator<MEDIDA_TYPE,N_TYPE> Integrate(boxset);//set deltaT, temperature, Calculo las primeras fuerza
   boxset.BoxPressure.PromeTensorZero();
 //  //for(int step=1; step <= boxset.SimulationParams.NumSteps; step++){
-  boxset.SimulationParams.InitStep(); 
+  boxset.SimulationParams.InitStep();
   T.StartTimer1();
   while( boxset.SimulationParams.EndStep()  ){
       Integrate.VelocityVerletNVT(boxset);

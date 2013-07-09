@@ -52,10 +52,14 @@ public:
             //working: ESTO ES LO QUE SE DESEA
 //            pBox.pot_energy();
 //            pBox.forces();
+            
             invrij = 1.0/rij2;
-            rij6 = invrij*invrij*invrij;
-            pBox.PotentialEnergy = pBox.PotentialEnergy + 4.0*rij6*(rij6 - 1.0);
-            Fij=24.0*( 2.0*rij6 - 1.0 )*rij6;
+//            rij6 = invrij*invrij*invrij;
+//            pBox.PotentialEnergy = pBox.PotentialEnergy + 4.0*rij6*(rij6 - 1.0);
+            pBox.PotentialEnergy = pBox.PotentialEnergy 
+                    + pBox.SimulationParams.Pot->calc_pot(invrij);
+//            Fij=24.0*( 2.0*rij6 - 1.0 )*rij6;
+            Fij = pBox.SimulationParams.Pot->calc_force(invrij);
             pBox.ForceX[i]=pBox.ForceX[i]+Fij*dx*invrij;
             pBox.ForceY[i]=pBox.ForceY[i]+Fij*dy*invrij;
             pBox.ForceZ[i]=pBox.ForceZ[i]+Fij*dz*invrij;

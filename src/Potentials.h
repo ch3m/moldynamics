@@ -14,9 +14,7 @@
 #define POTENTIALS_h
 
 #include <iostream>
-#include "boost/function.hpp"
-#include "boost/bind.hpp"
-    
+
 template<class Tmedida> Tmedida LJ_pot_energy_std(Tmedida rij2){
     std::cout << "MyFunc2: " << rij2 << std::endl;
     Tmedida invrij, rij6;
@@ -25,11 +23,11 @@ template<class Tmedida> Tmedida LJ_pot_energy_std(Tmedida rij2){
     return 4.0*rij6*(rij6 - 1.0);
 }
 
-template<class Tmedida> Tmedida LJ_pot_energy_std(Tmedida rij2, Tmedida sigma, Tmedida epsilon){
+template<class Tmedida> Tmedida LJ_pot_energy(Tmedida rij2, Tmedida sigma, Tmedida epsilon){
     Tmedida invrij, rij6;
     invrij = 1.0/rij2;
     rij6 = invrij*invrij*invrij;
-    return 4.0*rij6*(rij6 - 1.0);
+    return (4.0*rij6*(rij6 - 1.0));
 }
 
 int MyFunc2(int i)

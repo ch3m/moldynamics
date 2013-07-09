@@ -12,7 +12,7 @@
 #define SIMPARAMS_h
 #include <iostream>
 #include <string>
-
+#include "Potential.h"
 
 
 using namespace std;
@@ -33,7 +33,8 @@ public:
     string boxfile_name;
     //Variable Real-Time
     Tn CurrentStep;
-    int Potential_Type;
+    string Potential_type;
+    Potential<Tmedida,Tn> *Pot;
 
     //Constructors & destructor
     SimParams() {
@@ -47,7 +48,7 @@ public:
       dcd_period = 1;
       dcd_overwrite = true;
       boxfile_name = "caja";
-      Potential_Type = 1;
+      Potential_type = "new";
     }
     ~SimParams(){};
 
@@ -72,8 +73,19 @@ public:
       cout << "\t\tDCD period:\t" << dcd_period   << endl;
       cout << "\t\tDCD overwrite:\t" << dcd_overwrite   << endl;
       cout << "\t\tBoxfile name:\t" << boxfile_name   << endl;
+      cout << "\t\tPotential type:\t" <<  Potential_type  << endl;
       cout << "------------------------------------" << endl;
     }
+    
+//    Potencial implementado con functors de Boost
+//    void set_Potential() {
+//      if(Potential_type.compare("LJ")){
+//        
+//        cout << "Configuring Potential.. " << endl;
+////        typedef boost::function<Tmedida(Tmedida)> Function_t;
+////        Function_t myFunc1 = boost::bind(&LJ_pot_energy<Tmedida>, _1, 4.3);
+//      }
+//    };
 
 protected:
 private:
