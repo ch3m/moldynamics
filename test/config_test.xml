@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<moldynamics version="0.1">
+  <configuration>
+    <steps total="100" average_period="10" output_period="20"/>
+    <settings deltaT="0.003" temperature="0.850" cut_radio="6.0"/>
+    <DCD using="true" period="100" overwrite="false"/>
+    <boxfile name="InitialBox"/>
+    <potential type="LJ" sigma="1.0" epsilon="1.0"/>
+  </configuration>
+</moldynamics>
