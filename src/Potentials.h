@@ -23,11 +23,12 @@ template<class Tmedida> Tmedida LJ_pot_energy_std(Tmedida rij2){
     return 4.0*rij6*(rij6 - 1.0);
 }
 
-template<class Tmedida> Tmedida LJ_pot_energy(Tmedida rij2, Tmedida sigma, Tmedida epsilon){
-    Tmedida invrij, rij6;
-    invrij = 1.0/rij2;
-    rij6 = invrij*invrij*invrij;
-    return (4.0*rij6*(rij6 - 1.0));
+template<class Tmedida> Tmedida LJ_pot_energy(Tmedida invrij, Tmedida sigma, Tmedida epsilon){
+    return (4.0*invrij*invrij*invrij*(invrij*invrij*invrij - 1.0));
+}
+
+template<class Tmedida> Tmedida LJ_force(Tmedida invrij, Tmedida sigma, Tmedida epsilon){
+    return (24.0*( 2.0*invrij*invrij*invrij - 1.0 )*invrij*invrij*invrij);
 }
 
 int MyFunc2(int i)

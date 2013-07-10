@@ -11,6 +11,8 @@
         <in>DensityProfile.h</in>
         <in>Forces.h</in>
         <in>Integrator.h</in>
+        <in>LJ_pot.h</in>
+        <in>Potential.h</in>
         <in>Potentials.h</in>
         <in>Pressure.h</in>
         <in>ReadBoxConfig.h</in>
@@ -25,9 +27,9 @@
         <in>main.cc</in>
       </df>
       <df name="test">
+        <in>unit_test.cpp</in>
       </df>
       <df name="tools">
-        <in>file.c</in>
       </df>
     </df>
     <logicalFolder name="ExternalFiles"

@@ -18,8 +18,7 @@ CXX := g++
 BOOST_LIB := ../boost-install
 FLAGS := -O3
 endif
-	
-	
+		
 directories: bin
 
 bin:
@@ -29,6 +28,6 @@ program:
 	@echo "arquitectura: $(ARCH)"
 	@echo "Compilador: ${CXX}"
 	${CXX} ${FLAGS} -L${BOOST_LIB}/lib -lboost_filesystem -lboost_system -I${BOOST_LIB}/include src/main.cc -o bin/moldynamics
-	
+
 clean:
 	rm -rf bin

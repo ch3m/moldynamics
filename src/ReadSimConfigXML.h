@@ -54,10 +54,8 @@ public:
       if(!param.Potential_type.compare("LJ")){
         Tmedida s = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.sigma");
         Tmedida e = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.epsilon");
-//        lj.set_pot(s,e);
         param.Pot = new LJ<Tmedida,Tn>(s,e);
-//        param.Pot = &lj;
-//        param.Pot->calc_pot(4.5);
+        param.set_Potential(s,e);
       }else{
         cout << "Invalid potential type in XML file" << endl;
         exit(15);
