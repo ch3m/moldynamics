@@ -11,6 +11,7 @@
 #ifndef FORCES_h
 #define FORCES_h
 #include "Box.h"
+#include <math.h>
 
 using namespace std;
 
@@ -26,7 +27,7 @@ public:
     //some funtion
     void RunCPU(Box<Tmedida,Tn> & pBox) {
       int N=pBox.TotalParticles;
-      double dx,dy,dz,Fij,rij2,invrij,rij6;
+      double dx,dy,dz,Fij,rij2,invrij2,rij6,invrij,pot;
 
       pBox.ForceZero();
       pBox.PotentialEnergy = 0.0;
@@ -49,27 +50,22 @@ public:
 
           rij2=dx*dx+dy*dy+dz*dz;
           if(rij2 < rcut*rcut){
-            //working: ESTO ES LO QUE SE DESEA
-//            pBox.pot_energy();
-//            pBox.forces();
-            
-            invrij = 1.0/rij2;
-//            rij6 = invrij*invrij*invrij;
-//            pBox.PotentialEnergy = pBox.PotentialEnergy + 4.0*rij6*(rij6 - 1.0);
-//            pBox.PotentialEnergy = pBox.PotentialEnergy 
-//                    + pBox.SimulationParams.Pot->calc_pot(invrij);
-            pBox.PotentialEnergy = pBox.PotentialEnergy 
-                    + pBox.SimulationParams.myFunc1(invrij);
-//            Fij=24.0*( 2.0*rij6 - 1.0 )*rij6;
-//            Fij = pBox.SimulationParams.Pot->calc_force(invrij);
-            Fij=pBox.SimulationParams.myFunc2(invrij);
-            pBox.ForceX[i]=pBox.ForceX[i]+Fij*dx*invrij;
-            pBox.ForceY[i]=pBox.ForceY[i]+Fij*dy*invrij;
-            pBox.ForceZ[i]=pBox.ForceZ[i]+Fij*dz*invrij;
-            pBox.ForceX[j]=pBox.ForceX[j]-Fij*dx*invrij;
-            pBox.ForceY[j]=pBox.ForceY[j]-Fij*dy*invrij;
-            pBox.ForceZ[j]=pBox.ForceZ[j]-Fij*dz*invrij;
-            double pgbr = Fij*invrij;
+            /** @attention Se puede optimizar el polimorfismo 
+             *      haciendo poliformas de esta clase*/
+            invrij2 = 1.0/rij2;
+            pBox.SimulationParams.Pot->calc_pot(rij2,Fij,pot);
+            pBox.PotentialEnergy = pBox.PotentialEnergy + pot;
+            if((i+1)==j){
+//              cout << "Fij= " << Fij << endl;
+              cout << "Pot = " << pot << endl;
+            }
+            pBox.ForceX[i]=pBox.ForceX[i]+Fij*dx;
+            pBox.ForceY[i]=pBox.ForceY[i]+Fij*dy;
+            pBox.ForceZ[i]=pBox.ForceZ[i]+Fij*dz;
+            pBox.ForceX[j]=pBox.ForceX[j]-Fij*dx;
+            pBox.ForceY[j]=pBox.ForceY[j]-Fij*dy;
+            pBox.ForceZ[j]=pBox.ForceZ[j]-Fij*dz;
+            double pgbr = Fij*invrij2;
             if(pBox.SimulationParams.Average())pBox.BoxPressure.Add(pgbr,dx,dy,dz);
           }
         }

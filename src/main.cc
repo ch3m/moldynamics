@@ -11,10 +11,6 @@
 #include "DensityProfile.h"
 #include "StdOutput.h"
 #include "Timer.h"
-//#include "boost/function.hpp"
-//#include "boost/bind.hpp"
-#include "Potentials.h"
-#include "Potential.h"
 
 #ifndef MEDIDA_TYPE
 #define MEDIDA_TYPE double
@@ -28,22 +24,11 @@ using namespace std;
 
 // main routine that executes on the host  
 int main(void){
-//  typedef boost::function<MEDIDA_TYPE(MEDIDA_TYPE)> Function_t;
-//    Function_t myFunc1 = boost::bind(&LJ_pot_energy<MEDIDA_TYPE>, _1, 4.3);
-//    Function_t myFunc2 = boost::bind(&MyFunc2, _1);
-//
-//    myFunc1(5.2);
-//    myFunc1(7.8);
-//    myFunc2(6);
-  //SimParams Params; //Create object with parameters simulation(Steps,average...)
-//  Potential<MEDIDA_TYPE,N_TYPE>  Pot(1);
-//  Potential  Pot(1);
   Box<MEDIDA_TYPE,N_TYPE> boxset;
   StdOutput<MEDIDA_TYPE,N_TYPE> Salida;
   string str = "./config.xml";
   ReadSimConfigXML<MEDIDA_TYPE,N_TYPE> SimXMLConf(str);
   SimXMLConf.Reader(boxset.SimulationParams);
-//  boxset.SimulationParams.Pot->calc_pot(3.2);
   ReadBoxConfig<MEDIDA_TYPE,N_TYPE> BoxFromFile(boxset.SimulationParams.boxfile_name);
   WriterXYZ<MEDIDA_TYPE,N_TYPE>  fileXYZ("./movie.xyz");
   WriterBOX<MEDIDA_TYPE,N_TYPE> Boxfile("./box.config");

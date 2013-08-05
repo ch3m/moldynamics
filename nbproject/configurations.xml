@@ -7,12 +7,16 @@
       <df name="docs">
       </df>
       <df name="src">
+        <df name="Potentials">
+          <in>LJ.h</in>
+          <in>LJ_std.h</in>
+          <in>Potential.h</in>
+          <in>flat_well.h</in>
+        </df>
         <in>Box.h</in>
         <in>DensityProfile.h</in>
         <in>Forces.h</in>
         <in>Integrator.h</in>
-        <in>LJ_pot.h</in>
-        <in>Potential.h</in>
         <in>Potentials.h</in>
         <in>Pressure.h</in>
         <in>ReadBoxConfig.h</in>

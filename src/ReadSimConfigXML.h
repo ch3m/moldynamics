@@ -14,8 +14,10 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/xml_parser.hpp>
 #include "SimParams.h"
-#include "Potential.h"
-#include "LJ_pot.h"
+#include "Potentials/Potential.h"
+#include "Potentials/LJ.h"
+#include "Potentials/LJ_std.h"
+#include "Potentials/flat_well.h"
 
 using boost::property_tree::ptree;
 using namespace boost::property_tree::xml_parser;
@@ -55,7 +57,15 @@ public:
         Tmedida s = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.sigma");
         Tmedida e = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.epsilon");
         param.Pot = new LJ<Tmedida,Tn>(s,e);
-        param.set_Potential(s,e);
+      } else if(!param.Potential_type.compare("LJ_std")){
+        param.Pot = new LJ_std<Tmedida,Tn>();
+      }else if(!param.Potential_type.compare("Flat_well")){
+        Tmedida s = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.sigma");
+        Tmedida e = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.epsilon");
+        Tmedida m = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.m");
+        Tmedida n = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.n");
+        Tmedida alpha = pt.get<Tmedida>("moldynamics.configuration.potential.<xmlattr>.alpha");
+        param.Pot = new FlatWell<Tmedida,Tn>(s,e,m,n,alpha);
       }else{
         cout << "Invalid potential type in XML file" << endl;
         exit(15);

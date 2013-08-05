@@ -14,8 +14,7 @@
 #include <string>
 #include "boost/function.hpp"
 #include "boost/bind.hpp"
-#include "Potential.h"
-#include "Potentials.h"
+#include "Potentials/Potential.h"
 
 
 using namespace std;
@@ -38,9 +37,6 @@ public:
     Tn CurrentStep;
     string Potential_type;
     Potential<Tmedida,Tn> *Pot;
-    typedef boost::function<Tmedida(Tmedida)> Function_t;
-    Function_t myFunc1;
-    Function_t myFunc2;
 
     //Constructors & destructor
     SimParams() {
@@ -82,13 +78,6 @@ public:
       cout << "\t\tPotential type:\t" <<  Potential_type  << endl;
       cout << "------------------------------------" << endl;
     }
-    
-//    Potencial implementado con functors de Boost
-    void set_Potential(Tmedida s,Tmedida e) {
-        cout << "Configuring Potential.. " << endl;
-        myFunc1 = boost::bind(&LJ_pot_energy<Tmedida>, _1, s, e);
-        myFunc2 = boost::bind(&LJ_force<Tmedida>, _1, s, e);
-    };
 
 protected:
 private:
